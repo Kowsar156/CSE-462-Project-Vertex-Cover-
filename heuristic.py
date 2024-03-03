@@ -63,17 +63,15 @@ def approx_vertex_cover(graph):
 
     while E:
         # Find an edge with maximum degree vertices
-        max_degree_edge = max(E, key=lambda edge: len(graph[edge[0]]) + len(graph[edge[1]]))
+        max_degree_edge = max(E, key=lambda edge: len(graph[edge[0]]))
 
         # Add the vertices of the max degree edge to the cover
         C.add(max_degree_edge[0])
-        C.add(max_degree_edge[1])
+        # C.add(max_degree_edge[1])
 
         # Remove all edges incident to the selected vertices
         incident_edges = [(max_degree_edge[0], neighbor) for neighbor in graph[max_degree_edge[0]]] + \
-                         [(neighbor, max_degree_edge[0]) for neighbor in graph[max_degree_edge[0]]] + \
-                         [(max_degree_edge[1], neighbor) for neighbor in graph[max_degree_edge[1]]] + \
-                         [(neighbor, max_degree_edge[1]) for neighbor in graph[max_degree_edge[1]]]
+                         [(neighbor, max_degree_edge[0]) for neighbor in graph[max_degree_edge[0]]] 
 
         E.difference_update(incident_edges)
 
