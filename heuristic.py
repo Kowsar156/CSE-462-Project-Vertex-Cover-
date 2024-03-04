@@ -30,23 +30,23 @@ def greedy_vertex_cover(graph):
             E.add((u, v))
 
     while E:
-        # Find an edge with maximum degree vertices
-        max_degree_edge = max(E, key=lambda edge: len(graph[edge[0]]))
+        # Find an vertex with maximum degree 
+        max_degree_vertex = max(E, key=lambda edge: len(graph[edge[0]]))
 
         # Add the vertices of the max degree edge to the cover
-        C.add(max_degree_edge[0])
-        # C.add(max_degree_edge[1])
+        C.add(max_degree_vertex[0])
+        # C.add(max_degree_vertex[1])
 
         # Remove all edges incident to the selected vertices
-        incident_edges = [(max_degree_edge[0], neighbor) for neighbor in graph[max_degree_edge[0]]] + \
-                         [(neighbor, max_degree_edge[0]) for neighbor in graph[max_degree_edge[0]]] 
+        incident_edges = [(max_degree_vertex[0], neighbor) for neighbor in graph[max_degree_vertex[0]]] + \
+                         [(neighbor, max_degree_vertex[0]) for neighbor in graph[max_degree_vertex[0]]] 
 
         E.difference_update(incident_edges)
 
     return C
 
 if __name__ == "__main__":
-  filename = "vc-exact_4.gr"
+  filename = "graph.gr"
   graph = read_graph(filename)
  
   start_time = time.perf_counter() 
